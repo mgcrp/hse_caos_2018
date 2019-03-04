@@ -5,22 +5,21 @@
 #include <sys/stat.h>
 
 int main(int argc, char *argv[]) {
-    unsigned long long answer = 0;
-    struct stat stats;
-
-    for (int agrId = 1; argId < argc; ++argId) {
-        int result = lstat(argv[argId], &stats);
-        if (result < 0) {
+    unsigned long long sum_size = 0;
+    struct stat file_stats;
+    for (int i = 1; i < argc; ++i) {
+        int r_ret = lstat(argv[i], &file_stats);
+        if (r_ret < 0) {
             continue;
         }
-        if (!S_ISREG(stats.st_mode) || S_ISLNK(stats.st_mode)) {
+        if (!S_ISREG(file_stats.st_mode) || S_ISLNK(file_stats.st_mode)) {
             continue;
         }
-        if (stats.st_nlink != 1) {
+        if (file_stats.st_nlink != 1) {
             continue;
         }
-        answer += stats.st_size;
+        sum_size += file_stats.st_size;
     }
-    printf("%llu\n", answer);
+    printf("%llu\n", sum_size);
     return 0;
 }
