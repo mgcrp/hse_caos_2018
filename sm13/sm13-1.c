@@ -14,7 +14,7 @@ int main() {
             continue;
         }
         char buf[20];
-        strftime(&buf, 20, "%F", localtime(&cur));
+        strftime(buf, 20, "%F", localtime(&cur));
         printf("%s\n", buf);
     }
 
