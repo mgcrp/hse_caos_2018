@@ -4,9 +4,7 @@
 #include <time.h>
 
 enum {
-    // 1 day == 24hours * 60minutes * 60seconds
     DAY_IN_SECONDS = 86400,
-    // buffer size
     BUF_SIZE = 20
 };
 
