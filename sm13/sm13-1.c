@@ -3,10 +3,7 @@
 #include <stdio.h>
 #include <time.h>
 
-enum {
-    DAY_IN_SECONDS = 86400,
-    BUF_SIZE = 20
-};
+enum { DAY_IN_SECONDS = 86400, BUF_SIZE = 20 };
 
 int main() {
     int32_t days_in;
