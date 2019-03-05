@@ -20,14 +20,14 @@ int main(int argc, char ** argv) {
 	uid_t current_user = getuid();
 	// Чтение файлов внутри папки
 	struct dirent * files;
-	while (files = readdir(current)) {
+	while (files = readdir(current_dir)) {
 		char * file_name = files->d_name;
 
 		char file_path[PATH_MAX];
 		snprintf(file_path, PATH_MAX, "%s/%s", argv[1], file_name);
 
 		struct stat file_stats;
-		int stat_ret = stat(full_path, &file_stats);
+		int stat_ret = stat(file_path, &file_stats);
 
 		// Ошибка при чтении stats
 		if (stat_ret) {
