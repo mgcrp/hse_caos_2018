@@ -19,9 +19,9 @@ int main(int argc, char ** argv) {
 	// Получение UID текущего пользователя
 	uid_t current_user = getuid();
 	// Чтение файлов внутри папки
-	struct dirent * files;
-	while (files = readdir(current_dir)) {
-		char * file_name = files->d_name;
+	struct dirent * file;
+	while ((file = readdir(current_dir))) {
+		char * file_name = file->d_name;
 
 		char file_path[PATH_MAX];
 		snprintf(file_path, PATH_MAX, "%s/%s", argv[1], file_name);
