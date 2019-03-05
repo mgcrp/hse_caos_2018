@@ -40,6 +40,6 @@ int main(int argc, char ** argv) {
 		size_all += buf.st_size;
 	}
 	closedir(current);
-	print("%lld\n", size_all);
+	printf("%lld\n", size_all);
 	return 0;
 }
