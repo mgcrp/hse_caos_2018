@@ -26,3 +26,25 @@ typedef struct Call {
     Value * argv;
     char ret;
 } Call;
+
+void value_print(const Value v) {
+    switch (v.ty) {
+        case 'v':
+            break;
+        case 'i':
+            printf("%d\n", v.i);
+            break;
+        case 'd':
+            printf("%.10g\n", v.d);
+            break;
+        case 's':
+            printf("%s\n", v.s);
+            break;
+        default:
+            break;
+    }
+}
+
+size_t value_size (const Value v) {
+    
+}
