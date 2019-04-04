@@ -13,9 +13,9 @@ void child(int N, int index) {
         if (pid == 0) {
             child(N, index + 1);
         }
-        wait(NULL);
-        exit(0);
     }
+    wait(NULL);
+    exit(0);
 }
 
 int main() {
