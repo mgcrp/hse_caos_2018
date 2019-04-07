@@ -29,7 +29,7 @@ int main() {
                 printf("%d\n", number);
                 exit(0);
             } else {
-                if (getpid == root_pid) {
+                if (getpid() == root_pid) {
                     printf("-1\n");
                 }
                 exit(1);
