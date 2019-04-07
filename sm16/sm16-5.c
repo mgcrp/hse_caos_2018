@@ -13,7 +13,7 @@ void writer(char filename[], int N, int A, int D, int K, int process_number) {
         int fd = open(filename, O_RDWR, 0666);
 
         for (int j = 0; j < K; ++j) {
-            int off = lseek(fd, j + (process_number * 4), SEEK_SET);
+            int off = lseek(fd, j * 4 + (process_number * N * 4), SEEK_SET);
             if (off < 0) {
                 exit(1);
             }
