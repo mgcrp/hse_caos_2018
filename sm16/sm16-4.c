@@ -16,6 +16,7 @@ int main() {
         if (pid < 0) {
             if (getpid() == root_pid) {
                 printf("-1\n");
+                exit(0);
             }
             exit(1);
         }
@@ -34,6 +35,7 @@ int main() {
                 // Последний завершаемый выводит -1
                 if (getpid() == root_pid) {
                     printf("-1\n");
+                    exit(0);
                 }
                 exit(1);
             }
