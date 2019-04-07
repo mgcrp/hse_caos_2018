@@ -25,7 +25,8 @@ int main() {
         pid_t pid = fork();
         if (pid > 0) {
             int waitpid_ret;
-            if (waitpid(pid, &waitpid_ret, WNOHANG)) {
+            waitpid(pid, &waitpid_ret, WNOHANG);
+            if (WEXITSTATUS(waitpid_ret)) {
                 printf("%d\n", number);
                 exit(0);
             } else {
