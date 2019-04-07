@@ -17,7 +17,8 @@ void writer(char filename[], int N, int A, int D, int K, int process_number) {
             if (off < 0) {
                 exit(1);
             }
-            int res = write(fd, A + process_number + (D * j), 4);
+            int current_num = A + process_number + (D * j);
+            int res = write(fd, &current_num, 4);
             if (res != 1) {
                 exit(1);
             }
