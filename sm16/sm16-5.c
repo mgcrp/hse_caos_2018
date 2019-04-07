@@ -11,6 +11,7 @@ void writer(char filename[], int N, int A, int D, int K, int process_number) {
         exit(1);
     } else if (pid == 0) {
         printf("Hello, I'm process #%d\n", process_number);
+        printf("process %d k = %d\n", process_number, k);
 
         int fd = open(filename, O_RDWR, 0666);
         int start_number = A + (process_number * D);
