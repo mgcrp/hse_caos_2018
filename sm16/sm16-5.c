@@ -21,7 +21,7 @@ void writer(char filename[], int N, int A, int D, int K, int process_number) {
                 exit(1);
             }
             int current_num = start_number + (D * j);
-            printf("process %d print %d pos %d", process_number, current_num, (N * j * 4) + (process_number * 4));
+            printf("process %d print %d pos %d\n", process_number, current_num, (N * j * 4) + (process_number * 4));
             int res = write(fd, &current_num, 4);
             if (res != 1) {
                 exit(1);
