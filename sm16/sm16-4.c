@@ -21,18 +21,20 @@
 int main() {
     int number;
     pid_t root_pid = getpid();
-    while (scanf("%d", &number) == 1) {
-        pid_t fork_ret = fork();
-        if (fork_ret > 0) {
+    while (scanf("%d", &number) != EOF) {
+        pid_t pid = fork();
+        if (pid > 0) {
             int waitpid_ret;
-            if (waitpid(fork_ret, &waitpid_ret, WNOHANG)) {
+            if (waitpid(pid, &waitpid_ret, WNOHANG)) {
                 printf("%d\n", number);
                 exit(0);
-            } else if (getpid() == root_pid) {
-                break;
             } else {
+                if (getpid == root_pid) {
+                    printf("-1\n");
+                }
                 exit(1);
             }
+            break;
         }
     }
     return 0;
