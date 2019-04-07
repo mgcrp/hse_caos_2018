@@ -4,6 +4,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+// ОНА ПРОШЛА!!!
 
 int main() {
     int number;
