@@ -26,6 +26,7 @@ void writer(char filename[], int N, int A, int D, int K, int process_number) {
         }
 
         close(fd);
+        exit(0);
     }
 }
 
