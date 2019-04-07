@@ -21,7 +21,7 @@
 int main() {
     int number;
     pid_t root_pid = getpid();
-    while (scanf("%d", &number) != EOF) {
+    while (scanf("%d", &number) == 1) {
         pid_t fork_ret = fork();
         if (fork_ret > 0) {
             int waitpid_ret;
