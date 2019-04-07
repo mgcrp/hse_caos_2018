@@ -10,6 +10,8 @@ void writer(char filename[], int N, int A, int D, int K, int process_number) {
     if (pid < 0) {
         exit(1);
     } else if (pid == 0) {
+        printf("Hello, I'm process #%d", process_number);
+
         int fd = open(filename, O_RDWR, 0666);
 
         for (int j = 0; j < K; ++j) {
