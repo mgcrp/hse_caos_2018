@@ -7,7 +7,6 @@
 int main() {
     int N;
     scanf("%d", &N);
-    pid_t pid_start = getpid();
 
     for (int i = 0; i < N; ++i) {
         // Выводим то, что от нас просят
