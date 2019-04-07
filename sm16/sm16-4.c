@@ -4,32 +4,27 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-// TODO:
-//  b = запоминаем пид главного процесса
-//  while (считываение):
-//      с = форк
-//      if (с > 0):
-//          d = waitpid
-//          if (d == 0):
-//              print(число)
-//          else if (d == 1):
-//          if (getpid() == b):
-//              break;
-//          плохой Exit
-//
 
 int main() {
     int number;
     pid_t root_pid = getpid();
+
     while (scanf("%d", &number) != EOF) {
+        // Чтение прошло успешно - пораждаем форк
         pid_t pid = fork();
+        // Если находимся в родителе
         if (pid > 0) {
+            // Ждем завершения порожденного процесса
             int waitpid_ret;
-            waitpid(pid, &waitpid_ret, WNOHANG);
-            if (WEXITSTATUS(waitpid_ret)) {
+            waitpid(pid, &waitpid_ret, 0);
+            if (!waitpid_ret) {
+                // Если код 0 - т.е. все завершилось корректно
+                // Печатаем цифру и выходим
                 printf("%d\n", number);
                 exit(0);
             } else {
+                // Иначе - выходим с ошибкой
+                // Последний завершаемый выводит -1
                 if (getpid() == root_pid) {
                     printf("-1\n");
                 }
@@ -38,5 +33,6 @@ int main() {
             break;
         }
     }
+
     return 0;
 }
