@@ -25,8 +25,7 @@ int main() {
         pid_t fork_ret = fork();
         if (fork_ret > 0) {
             int waitpid_ret;
-            waitpid(fork_ret, &waitpid_ret, WNOHANG);
-            if (WIFEXITED(waitpid_ret)) {
+            if (waitpid(fork_ret, &waitpid_ret, WNOHANG)) {
                 printf("%d\n", number);
                 exit(0);
             } else if (getpid() == root_pid) {
