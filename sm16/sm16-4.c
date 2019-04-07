@@ -24,7 +24,8 @@ int main() {
     while (scanf("%d", &number) != EOF) {
         pid_t fork_ret = fork();
         if (fork_ret > 0) {
-            pid_t waitpid_ret = waitpid(fork_ret);
+            int waitpid_ret;
+            waitpid(fork_ret, &waitpid_ret, WNOHANG);
             if (waitpid_ret == 0) {
                 printf("%d\n", number);
                 exit(0);
