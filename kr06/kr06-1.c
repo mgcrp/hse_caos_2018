@@ -11,7 +11,7 @@ int main(int argc, char * argv[]) {
 
     int year_in = strtol(argv[1], NULL, 10);
     int month_in = strtol(argv[2], NULL, 10);
-    int work_hours = 0;
+    int days_in = 1;
 
     time_t rawtime;
     struct tm * timeinfo;
@@ -19,9 +19,9 @@ int main(int argc, char * argv[]) {
     timeinfo = localtime(&rawtime);
     timeinfo->tm_year = year_in - 1900;
     timeinfo->tm_mon = month_in - 1;
-    timeinfo->tm_mday = 1;
+    timeinfo->tm_mday = days_in;
 
-    mktime(timeinfo);
+    rawtime = mktime(timeinfo);
 
     while (timeinfo->tm_mon == month_in - 1) {
         if (timeinfo->tm_wday >= 1 && timeinfo->tm_wday <= 4) {
@@ -31,6 +31,7 @@ int main(int argc, char * argv[]) {
         }
         rawtime += DAY_IN_SECONDS;
         timeinfo = localtime(&rawtime);
+        mktime(timeinfo);
     }
 
     printf("%d\n", work_hours);
