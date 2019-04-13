@@ -6,7 +6,7 @@ enum { DAY_IN_SECONDS = 86400 };
 
 int main(int argc, char * argv[]) {
     if (argc < 3) {
-        return 1
+        return 1;
     }
 
     int year_in = strtol(argv[1], NULL, 10);
