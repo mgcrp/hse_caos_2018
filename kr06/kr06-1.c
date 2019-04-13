@@ -11,7 +11,7 @@ int main(int argc, char * argv[]) {
 
     int year_in = strtol(argv[1], NULL, 10);
     int month_in = strtol(argv[2], NULL, 10);
-    int days_in = 1;
+    int work_hours = 0;
 
     time_t rawtime;
     struct tm * timeinfo;
