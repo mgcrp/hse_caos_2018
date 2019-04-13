@@ -19,7 +19,7 @@ int main(int argc, char * argv[]) {
     timeinfo = localtime(&rawtime);
     timeinfo->tm_year = year_in - 1900;
     timeinfo->tm_mon = month_in - 1;
-    timeinfo->tm_mday = days_in;
+    timeinfo->tm_mday = 1;
 
     rawtime = mktime(timeinfo);
 
