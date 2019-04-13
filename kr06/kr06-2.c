@@ -8,7 +8,7 @@ int main(int argc, char * argv[]) {
 
     double number;
     sscanf(argv[1], "%f", &number);
-    char prevFile[];
+    char prevFile[] = "";
 
     int current_arg = 2;
     while (current_arg <= argc - 1) {
