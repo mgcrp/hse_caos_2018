@@ -13,6 +13,7 @@ int main(int argc, char * argv[]) {
     int current_arg = 2;
     while (current_arg <= argc - 1) {
         char * functionName = argv[current_arg + 1];
+        void * handle;
         if (argv[current_arg] == "-") {
             void * handle = dlopen(prevFile, RTLD_LAZY);
         } else {
