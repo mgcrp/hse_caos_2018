@@ -3,8 +3,8 @@
 
 int main(int argc, char * argv[]) {
     if (argc < 4) {
-        return 0
-    };
+        return 0;
+    }
 
     double number;
     sscanf(argv[1], "%f", &number);
@@ -13,7 +13,7 @@ int main(int argc, char * argv[]) {
     int current_arg = 2;
     while (current_arg <= argc - 1) {
         char * functionName = argv[current_arg + 1];
-        if (argv[current_arg] == '-') {
+        if (argv[current_arg] == "-") {
             void * handle = dlopen(prevFile, RTLD_LAZY);
         } else {
             void * handle = dlopen(argv[current_arg], RTLD_LAZY);
