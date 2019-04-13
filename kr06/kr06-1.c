@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 enum { DAY_IN_SECONDS = 86400 };
 
 int main(int argc, char * argv[]) {
-    if (agrc < 3) {
+    if (argc < 3) {
         return 1
     }
 
