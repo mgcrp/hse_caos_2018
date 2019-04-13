@@ -1,5 +1,6 @@
 #include <dlfcn.h>
 #include <stdio.h>
+#include <string.h>
 
 int main(int argc, char * argv[]) {
     if (argc < 4) {
@@ -20,7 +21,7 @@ int main(int argc, char * argv[]) {
             void * handle = dlopen(argv[current_arg], RTLD_LAZY);
         }
         if (handle == NULL) { continue; }
-        prevFile = argv[current_arg];
+        strpcy(prevFile, argv[current_arg])
         void * function = dlsym(handle, functionName);
         if (function == NULL) { continue; }
         number = ((double(*)(double)) function)(number);
