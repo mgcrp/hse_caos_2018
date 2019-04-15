@@ -22,6 +22,7 @@ int exec(const char * str) {
         //     [!0 - в shell не ок] -> False в С;
         return (WEXITSTATUS(wait_ret) == 0);
     }
+    return False;
 }
 
 int main(int argc, char * argv[]) {
