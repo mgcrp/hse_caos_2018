@@ -4,10 +4,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-enum {
-    SIG_EXIT_CONST = 128,
-    BIN_SH_FAILED = 127
-};
+enum { SIG_EXIT_CONST = 128, BIN_SH_FAILED = 127 };
 
 int mysys(const char * str) {
     // Создание процесса
@@ -34,6 +31,6 @@ int mysys(const char * str) {
         // Завершение из-за сигнала - return 128 + <сигнал>
         return SIG_EXIT_CONST + WTERMSIG(waitpid_ret);
     }
-    
+
     return 0;
 }
