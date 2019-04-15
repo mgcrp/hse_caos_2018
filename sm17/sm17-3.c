@@ -27,7 +27,7 @@ int exec(const char * str) {
 int main(int argc, char * argv[]) {
     // Выполняем (<логический вывод 1> или <логический вывод 2>) и <логический вывод 3>
     // Так как вывод должен быть в shell-логике:
-    //     !True - !0 as Bytes - 1 as C output;
-    //     !False - !1 as Bytes - 0 as C output;
+    //     !True - !0 as Bytes - 1 as output in shell-logic;
+    //     !False - !1 as Bytes - 0 as output in shell-logic;
     return !( (exec(argv[1]) || exec(argv[2]) ) && exec(argv[3]) );
 }
