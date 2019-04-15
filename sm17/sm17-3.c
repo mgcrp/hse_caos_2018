@@ -2,7 +2,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-int exec(char * str) {
+int exec(const char * str) {
     // Функция запуска и проверки условия ¯\_(ツ)_/¯
     pid_t pid = fork();
 
@@ -24,7 +24,7 @@ int exec(char * str) {
     }
 }
 
-int main(int argc, char ** argv) {
+int main(int argc, char * argv[]) {
     // Выполняем (<логический вывод 1> или <логический вывод 2>) и <логический вывод 3>
     // Так как вывод должен быть в shell-логике:
     //     !True - !0 as Bytes - 1 as C output;
