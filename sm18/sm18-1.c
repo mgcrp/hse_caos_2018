@@ -17,8 +17,7 @@ int main(int argc, char * argv[]) {
     int pid1 = fork();
     if (pid1 < 0) {
         exit(1);
-    }
-    if (!pid1) {
+    } else if (!pid1) {
         // Child #1 - executing CMD1 from argv[1]
         dup2(fd[1], 1);
         close(fd[0]);
@@ -31,8 +30,7 @@ int main(int argc, char * argv[]) {
     int pid2 = fork();
     if (pid2 < 0) {
         exit(1);
-    }
-    if (!pid2) {
+    } else if (!pid2) {
         // Child #2 - executing CMD2 from argv[2]
         dup2(fd[0], 0);
         close(fd[0]);
