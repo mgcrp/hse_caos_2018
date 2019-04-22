@@ -10,13 +10,12 @@ int main(int argc, char * argv[]) {
 
     int fd[2];
     if (pipe(fd) < 0) {
-        perror("pipe");
         exit(1);
     }
 
+    // Child #1 code
     int pid1 = fork();
     if (pid1 < 0) {
-        perror("fork");
         exit(1);
     }
     if (!pid1) {
@@ -25,13 +24,12 @@ int main(int argc, char * argv[]) {
         close(fd[0]);
         close(fd[1]);
         execlp(argv[1], argv[1], NULL);
-        perror("execlp");
         _exit(1);
     }
 
+    // Child #2 code
     int pid2 = fork();
     if (pid2 < 0) {
-        perror("fork");
         exit(1);
     }
     if (!pid2) {
@@ -40,7 +38,6 @@ int main(int argc, char * argv[]) {
         close(fd[0]);
         close(fd[1]);
         execlp(argv[2], argv[2], NULL);
-        perror("execlp");
         _exit(1);
     }
 
