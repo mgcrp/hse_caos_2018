@@ -20,7 +20,7 @@ int main(int argc, char * argv[]) {
         exit(1);
     }
     if (!pid1) {
-        // Child #1 - executing first CMD from argv[1]
+        // Child #1 - executing CMD1 from argv[1]
         dup2(fd[1], 1);
         close(fd[0]);
         close(fd[1]);
@@ -35,7 +35,7 @@ int main(int argc, char * argv[]) {
         exit(1);
     }
     if (!pid2) {
-        // Child #2 - executing second CMD from argv[2]
+        // Child #2 - executing CMD2 from argv[2]
         dup2(fd[0], 0);
         close(fd[0]);
         close(fd[1]);
