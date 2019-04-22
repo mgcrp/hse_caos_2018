@@ -29,7 +29,7 @@ int main(int argc, char * argv[]) {
         _exit(1);
     }
 
-    int pid2 = fork()
+    int pid2 = fork();
     if (pid2 < 0) {
         perror("fork");
         exit(1);
