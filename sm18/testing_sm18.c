@@ -16,8 +16,8 @@ void read_from_pipe (int file) {
 void write_to_pipe (int file) {
     FILE *stream;
     stream = fdopen (file, "w");
-    fprintf (stream, 'hello, world!\n');
-    fprintf (stream, 'goodbye, world!\n');
+    fprintf (stream, "hello, world!\n");
+    fprintf (stream, "goodbye, world!\n");
     fclose (stream);
 }
 
@@ -27,7 +27,7 @@ int main() {
 
     /* Create the pipe. */
     if (pipe (mypipe)) {
-        fprintf(stderr,'Pipe failed.\n');
+        fprintf(stderr,"Pipe failed.\n");
         return EXIT_FAILURE;
     }
 
@@ -39,7 +39,7 @@ int main() {
         return EXIT_SUCCESS;
     } else if (pid < (pid_t) 0) {
         /* The fork failed. */
-        fprintf(stderr,'Fork failed.\n');
+        fprintf(stderr,"Fork failed.\n");
         return EXIT_FAILURE;
     } else {
         /* Это - родительский процесс. */
