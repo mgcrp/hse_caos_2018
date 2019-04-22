@@ -6,7 +6,7 @@
 void read_from_pipe (int file) {
     FILE *stream;
     int c;
-    stream = fdopen (file, 'r');
+    stream = fdopen (file, "r");
     while ((c = fgetc (stream)) != EOF)
         putchar (c);
         fclose (stream);
@@ -15,7 +15,7 @@ void read_from_pipe (int file) {
 /* Пишем некоторый произвольный текст в канал. */
 void write_to_pipe (int file) {
     FILE *stream;
-    stream = fdopen (file, 'w');
+    stream = fdopen (file, "w");
     fprintf (stream, 'hello, world!\n');
     fprintf (stream, 'goodbye, world!\n');
     fclose (stream);
