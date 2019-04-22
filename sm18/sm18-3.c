@@ -19,7 +19,7 @@ int main(int argc, char * argv[]) {
     // Creating child process
     pid_t pid1 = fork();
     if (pid1 < 0) {
-        exit(1);
+        _exit(1);
     } else if (!pid1) {
         // Setting up in&out streams
         dup2(pipe_stream[1], 1); // pipe.write as stdout
@@ -29,7 +29,7 @@ int main(int argc, char * argv[]) {
         // ...that wierd demographics
         pid_t pid2 = fork();
         if (pid2 < 0) {
-            exit(1);
+            _exit(1);
         } else if (!pid2) {
             // cmd1 execution
             execlp(argv[1], argv[1], NULL);
@@ -47,7 +47,7 @@ int main(int argc, char * argv[]) {
         // Creating another child process to execute cmd2
         pid_t pid3 = fork();
         if (pid3 < 0) {
-            exit(1);
+            _exit(1);
         } else if (!pid3) {
             // cmd2 execution
             execlp(argv[2], argv[2], NULL);
@@ -66,7 +66,7 @@ int main(int argc, char * argv[]) {
     // One more process to handle cmd3
     pid_t pid4 = fork();
     if (pid4 < 0) {
-        exit(1);
+        _exit(1);
     } else if (!pid4) {
         // Opening the output file and chaecking for errors
         int out_file = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0666);
@@ -81,7 +81,7 @@ int main(int argc, char * argv[]) {
         close(out_file); // ... can be closed!
 
         // Creating a process to execute cmd3
-        execlp(argv[2], argv[2], NULL);
+        execlp(argv[3], argv[3], NULL);
         _exit(0);
     }
 
