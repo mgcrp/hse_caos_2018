@@ -4,10 +4,12 @@
 #include <unistd.h>
 
 int main(int argc, char * argv[]) {
+    // Checking if we have 2 commands in argv
     if (argc < 3) {
         return 1;
     }
 
+    // Creating pipe and checking for errors
     int fd[2];
     if (pipe(fd) < 0) {
         exit(1);
@@ -39,6 +41,7 @@ int main(int argc, char * argv[]) {
         _exit(1);
     }
 
+    // Closing pipe, waiting for child-processes to finish
     close(fd[0]);
     close(fd[1]);
     wait(NULL);
