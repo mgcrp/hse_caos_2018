@@ -5,7 +5,7 @@
 
 int main(int argc, char * argv[]) {
     // Checking if we have 2 commands in argv
-    if (argc < 3) {
+    if (argc != 3) {
         return 1;
     }
 
