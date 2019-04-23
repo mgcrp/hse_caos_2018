@@ -9,11 +9,13 @@ int main(int argc, char * argv[]) {
     // argv[2] - первая библиотека -> (2 * i) - i-ая библиотека
     // argc[3] - первая функция -> (2 * i + 1) - i-ая функция
     if (argc == 2) {
+        // Подали только число - выводим его в требуемом формате
         double number;
-        sscanf(argv[1], "%f", &number);
+        sscanf(argv[1], "%lg", &number);
         printf("%.6g\n", number);
         return 0;
     } else if (argc < 4) {
+        // Ошибка
         return 0;
     }
 
