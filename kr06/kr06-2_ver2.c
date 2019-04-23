@@ -21,7 +21,7 @@ int main(int argc, char * argv[]) {
 
     // Считываю первый float
     double number;
-    sscanf(argv[1], "%f", &number);
+    sscanf(argv[1], "%lg", &number);
     // Индекс предыдущей библиотеки
     int prev_lib = 2;
     // Индекс текущей библиотеки
