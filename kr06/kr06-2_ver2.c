@@ -33,11 +33,11 @@ int main(int argc, char * argv[]) {
 
         if (strcmp(argv[current_arg], "-")) {
             // Не равно "-"
-            void * handle = dlopen(argv[current_arg], RTLD_LAZY);
+            handle = dlopen(argv[current_arg], RTLD_LAZY);
             prev_lib = current_arg;
         } else {
             // равно "-"
-            void * handle = dlopen(argv[prev_lib], RTLD_LAZY);
+            handle = dlopen(argv[prev_lib], RTLD_LAZY);
         }
 
         if (handle == NULL) { continue; }
