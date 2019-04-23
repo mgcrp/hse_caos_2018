@@ -42,7 +42,7 @@ int main(int argc, char * argv[]) {
         void * function = dlsym(handle, functionName);
         if (function == NULL) { continue; }
         number = ((double(*)(double)) function)(number);
-        if (dlclode(handle) < 0) { exit(1); }
+        if (dlclose(handle) < 0) { exit(1); }
 
         current_arg += 2;
     }
