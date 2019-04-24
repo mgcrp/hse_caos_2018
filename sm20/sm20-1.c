@@ -24,7 +24,7 @@ int main() {
             struct sockaddr_in *ipv4 = (struct sockaddr_in *)temp->ai_addr;
             void* addr = &(ipv4->sin_addr);
             inet_ntop(temp->ai_family, addr, ipstr, sizeof ipstr);
-            int port = ntohs( ( (struct sockaddr_in *)( ((struct sockaddr *)temp)->ai_addr ) )->sin_port );
+            int port = ntohs( ((struct sockaddr_in *)( (struct sockaddr *)p->ai_addr ))->sin_port );
             // printf("  %s: %s\n", ipver, ipstr);
             printf("%s:%d\n", ipstr, port);
         }
