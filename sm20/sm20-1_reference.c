@@ -5,6 +5,17 @@
 #include <netdb.h>
 #include <arpa/inet.h>
 
+// A part added by @mgcrp
+// get port, IPv4 or IPv6:
+in_port_t get_in_port(struct sockaddr *sa) {
+    if (sa->sa_family == AF_INET) {
+        return (((struct sockaddr_in*)sa)->sin_port);
+    }
+
+    return (((struct sockaddr_in6*)sa)->sin6_port);
+}
+
+
 int main(int argc, char *argv[]) {
     struct addrinfo hints, *res, *p;
     int status;
@@ -33,6 +44,9 @@ int main(int argc, char *argv[]) {
 
         inet_ntop(p->ai_family, addr, ipstr, sizeof ipstr);
         printf("  %s: %s\n", ipver, ipstr);
+
+        // A part added by @mgcrp
+        printf("port is %d\n",ntohs(get_in_port((struct sockaddr *)p->ai_addr)));
     }
 
     freeaddrinfo(res); // free the linked list
