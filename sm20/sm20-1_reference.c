@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
         printf("  %s: %s\n", ipver, ipstr);
 
         // A part added by @mgcrp
-        printf("port is %d\n",ntohs(get_in_port((struct sockaddr *)p->ai_addr)));
+        // printf("port is %d\n",ntohs(get_in_port((struct sockaddr *)p->ai_addr)));
         printf("*** %d\n", ntohs( ((struct sockaddr_in *)( (struct sockaddr *)p)->ai_addr )->sin_port ))
     }
 

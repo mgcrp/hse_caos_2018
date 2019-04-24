@@ -23,14 +23,10 @@ int main() {
         for(temp = res; temp != NULL; temp = temp->ai_next) {
             struct sockaddr_in *ipv4 = (struct sockaddr_in *)temp->ai_addr;
             void* addr = &(ipv4->sin_addr);
-            // char* ipver = "IPv4";
-
             inet_ntop(temp->ai_family, addr, ipstr, sizeof ipstr);
+            int port = ntohs( ((struct sockaddr_in *)( (struct sockaddr *)p)->ai_addr )->sin_port );
             // printf("  %s: %s\n", ipver, ipstr);
-            printf("%s\n", );
-
-            // A part added by @mgcrp
-            printf("port is %d\n",ntohs(get_in_port( (struct sockaddr *)temp->ai_addr )));
+            printf("%s:%d\n", ipstr, port);            
         }
 
         freeaddrinfo(res); // free the linked list
