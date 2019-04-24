@@ -21,12 +21,12 @@ int main() {
             continue;
         }
 
-        char ipmin_str[INET_ADDRSTRLEN];
-        unsigned long ipmin_binary;
-        unsigned short ipmin_port;
-        bool is_first = true;
-
         for(temp = result; temp != NULL; temp = temp->ai_next) {
+            char ipmin_str[INET_ADDRSTRLEN];
+            unsigned long ipmin_binary;
+            unsigned short ipmin_port;
+            bool is_first = true;
+            
             struct sockaddr_in *ipv4 = (struct sockaddr_in *)temp->ai_addr;
             void* addr = &(ipv4->sin_addr);
             inet_ntop(temp->ai_family, addr, ipstr, sizeof ipstr);
