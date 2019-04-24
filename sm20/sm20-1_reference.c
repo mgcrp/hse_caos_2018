@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
     hints.ai_socktype = SOCK_STREAM;
 
     // if ((status = getaddrinfo(argv[1], NULL, &hints, &res)) != 0) {
-    if ((status = getaddrinfo(argv[1], "https", &hints, &res)) != 0) {
+    if ((status = getaddrinfo(argv[1], "http", &hints, &res)) != 0) {
         fprintf(stderr, "getaddrinfo: %sn", gai_strerror(status));
         return 2;
     }
