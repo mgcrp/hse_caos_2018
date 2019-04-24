@@ -53,7 +53,7 @@ int main(int argc, char ** argv) {
     }
 
     for (int i = 0; i <= k; ++i) {
-        ret = fprintf(wf, "%d", i);
+        ret = fprintf(wf, "%d\n", i);
         fflush(wf);
         if (ret < 0) {
             fprintf(stderr, "cannot write to socket\n");
