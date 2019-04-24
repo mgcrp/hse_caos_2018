@@ -9,7 +9,7 @@ int main() {
     struct addrinfo * temp;
     struct addrinfo * result;
     struct addrinfo hints = { .ai_family = AF_INET, .ai_socktype = SOCK_STREAM };
-    char host_in[1000], service_in[1000];
+    char host_in[1000], service_in[1000], ipstr[INET_ADDRSTRLEN];
 
     while (scanf("%s %s", &host_in, &service_in) != EOF) {
         int ret_code;
@@ -20,7 +20,7 @@ int main() {
             continue;
         }
 
-        for(temp = res; temp != NULL; temp = temp->ai_next) {
+        for(temp = result; temp != NULL; temp = temp->ai_next) {
             struct sockaddr_in *ipv4 = (struct sockaddr_in *)temp->ai_addr;
             void* addr = &(ipv4->sin_addr);
             inet_ntop(temp->ai_family, addr, ipstr, sizeof ipstr);
