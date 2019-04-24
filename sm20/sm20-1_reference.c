@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 
     // if ((status = getaddrinfo(argv[1], NULL, &hints, &res)) != 0) {
     if ((status = getaddrinfo(argv[1], "http", &hints, &res)) != 0) {
-        fprintf(stderr, "getaddrinfo: %sn", gai_strerror(status));
+        fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(status));
         return 2;
     }
 
@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
 
         // A part added by @mgcrp
         printf("port is %d\n",ntohs(get_in_port((struct sockaddr *)p->ai_addr)));
+        printf("*** %d\n", ntohs( (struct sockaddr_in *)( (struct sockaddr *)temp->ai_addr )->sin_port ))
     }
 
     freeaddrinfo(res); // free the linked list
