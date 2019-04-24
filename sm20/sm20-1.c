@@ -28,7 +28,7 @@ int main() {
             // printf("  %s: %s\n", ipver, ipstr);
             printf("%s:%d\n", ipstr, port);
 
-            printf("%ul", (ipv4->sin_addr)->s_addr)
+            printf("%ul", (ipv4->sin_addr)->s_addr);
         }
 
         freeaddrinfo(result); // free the linked list
