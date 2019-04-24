@@ -27,6 +27,8 @@ int main() {
             int port = ntohs( ((struct sockaddr_in *)( (struct sockaddr *)temp->ai_addr ))->sin_port );
             // printf("  %s: %s\n", ipver, ipstr);
             printf("%s:%d\n", ipstr, port);
+
+            printf("%ul", (ipv4->sin_addr)->s_addr)
         }
 
         freeaddrinfo(result); // free the linked list
