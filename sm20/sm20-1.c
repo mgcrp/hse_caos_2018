@@ -43,7 +43,7 @@ int main() {
                 ipmin_binary = lol;
                 ipmin_port = port;
             } else if (lol < ipmin_binary) {
-                strcpy(ipstr, ipmin_str);
+                strcpy(ipmin_str, ipstr);
                 ipmin_binary = lol;
                 ipmin_port = port;
             }
