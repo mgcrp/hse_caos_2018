@@ -39,11 +39,13 @@ int main() {
 
             if (is_first) {
                 is_first = false;
+                printf("\t\tFirst came in!\n");
                 strcpy(ipstr, ipmin_str);
                 ipmin_binary = lol;
                 ipmin_port = port;
             }
             if (lol < ipmin_binary) {
+                printf("\t\tMinimum value changed!\n");
                 strcpy(ipmin_str, ipstr);
                 ipmin_binary = lol;
                 ipmin_port = port;
