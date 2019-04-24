@@ -12,6 +12,8 @@ int main() {
     char host_in[1000], service_in[1000];
 
     while (scanf("%s %s", &host_in, &service_in) != EOF) {
+        printf("%s___%s\n", host_in, service_in);
+
         int ret_code;
 
         ret_code = getaddrinfo(host_in, service_in, &hints, &result);
