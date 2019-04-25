@@ -10,45 +10,43 @@ int main() {
     struct addrinfo * temp;
     struct addrinfo * result;
     struct addrinfo hints = { .ai_family = AF_INET, .ai_socktype = SOCK_STREAM };
+
     char host_in[1000], service_in[1000];
-
     while (scanf("%s %s", &host_in, &service_in) != EOF) {
-        int ret_code;
-
-        ret_code = getaddrinfo(host_in, service_in, &hints, &result);
+        int ret_code = getaddrinfo(host_in, service_in, &hints, &result);
         if (ret_code) {
             printf("%s\n", gai_strerror(ret_code));
             continue;
         }
 
-        char ipmin_str[INET_ADDRSTRLEN], ipstr[INET_ADDRSTRLEN];
-        unsigned long ipmin_binary;
-        unsigned short ipmin_port;
         bool is_first = true;
+        unsigned short ipmin_port;
+        unsigned long ipmin_binary;
+        char ipmin_str[INET_ADDRSTRLEN], ipcur_str[INET_ADDRSTRLEN];
 
-        for(temp = result; temp != NULL; temp = temp->ai_next) {
+        for (temp = result; temp != NULL; temp = temp->ai_next) {
             struct sockaddr_in *ipv4 = (struct sockaddr_in *)temp->ai_addr;
             void* addr = &(ipv4->sin_addr);
-            inet_ntop(temp->ai_family, addr, ipstr, sizeof ipstr);
-            int port = ntohs( ((struct sockaddr_in *)( (struct sockaddr *)temp->ai_addr ))->sin_port );
-            // printf("  %s: %s\n", ipver, ipstr);
-            printf("\t%s:%d\n", ipstr, port);
+            inet_ntop(temp->ai_family, addr, ipcur_str, sizeof ipcur_str);
 
-            unsigned long lol = ipv4->sin_addr.s_addr;
-            lol = ntohl(lol);
+            unsigned long ipcur_binary = ntohl(ipv4->sin_addr.s_addr);
+            inet_ntop(temp->ai_family, addr, ipcur_str, sizeof ipcur_str);
+            unsigned short ipcur_port = ntohs(((struct sockaddr_in *)((struct sockaddr *)temp->ai_addr))->sin_port);
+
+            // DEBUG
+            printf("\t%s:%d\n%x\n", ipcur_str, ipcur_port, ipcur_binary);
 
             if (is_first) {
-                is_first = false;
                 printf("\t\tFirst came in!\n");
-                strcpy(ipmin_str, ipstr);
-                ipmin_binary = lol;
-                ipmin_port = port;
-            }
-            if (lol < ipmin_binary) {
+                is_first = false;
+                strcpy(ipmin_str, ipcur_str);
+                ipmin_binary = ipcur_binary;
+                ipmin_port = ipcur_port;
+            } else if (ipcur_binary < ipmin_binary) {
                 printf("\t\tMinimum value changed!\n");
-                strcpy(ipmin_str, ipstr);
-                ipmin_binary = lol;
-                ipmin_port = port;
+                strcpy(ipmin_str, ipcur_str);
+                ipmin_binary = ipcur_binary;
+                ipmin_port = ipcur_port;
             }
         }
 
