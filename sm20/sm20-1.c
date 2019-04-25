@@ -27,23 +27,26 @@ int main() {
         for (temp = result; temp != NULL; temp = temp->ai_next) {
             struct sockaddr_in *ipv4 = (struct sockaddr_in *)temp->ai_addr;
             void* addr = &(ipv4->sin_addr);
-            inet_ntop(temp->ai_family, addr, ipcur_str, sizeof ipcur_str);
 
             unsigned long ipcur_binary = ntohl(ipv4->sin_addr.s_addr);
             inet_ntop(temp->ai_family, addr, ipcur_str, sizeof ipcur_str);
             unsigned short ipcur_port = ntohs(((struct sockaddr_in *)((struct sockaddr *)temp->ai_addr))->sin_port);
 
             // DEBUG
-            printf("\t%s:%d\n%x\n", ipcur_str, ipcur_port, ipcur_binary);
+            printf("\t%s:%d\t%x\n", ipcur_str, ipcur_port, ipcur_binary);
 
             if (is_first) {
+                // DEBUG
                 printf("\t\tFirst came in!\n");
+
                 is_first = false;
                 strcpy(ipmin_str, ipcur_str);
                 ipmin_binary = ipcur_binary;
                 ipmin_port = ipcur_port;
             } else if (ipcur_binary < ipmin_binary) {
+                // DEBUG
                 printf("\t\tMinimum value changed!\n");
+
                 strcpy(ipmin_str, ipcur_str);
                 ipmin_binary = ipcur_binary;
                 ipmin_port = ipcur_port;
