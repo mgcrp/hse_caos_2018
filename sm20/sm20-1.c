@@ -33,20 +33,18 @@ int main() {
             unsigned short ipcur_port = ntohs(((struct sockaddr_in *)((struct sockaddr *)temp->ai_addr))->sin_port);
 
             // DEBUG
-            printf("\t%s:%d\t%x\n", ipcur_str, ipcur_port, ipcur_binary);
+            // printf("\t%s:%d\t%x\n", ipcur_str, ipcur_port, ipcur_binary);
 
             if (is_first) {
                 // DEBUG
-                printf("\t\tFirst came in!\n");
-
+                // printf("\t\tFirst came in!\n");
                 is_first = false;
                 strcpy(ipmin_str, ipcur_str);
                 ipmin_binary = ipcur_binary;
                 ipmin_port = ipcur_port;
             } else if (ipcur_binary < ipmin_binary) {
                 // DEBUG
-                printf("\t\tMinimum value changed!\n");
-
+                // printf("\t\tMinimum value changed!\n");
                 strcpy(ipmin_str, ipcur_str);
                 ipmin_binary = ipcur_binary;
                 ipmin_port = ipcur_port;
