@@ -50,9 +50,9 @@ int main() {
                 ipmin_port = ipcur_port;
             }
         }
-
+        
         printf("%s:%d\n", ipmin_str, ipmin_port);
-
         freeaddrinfo(result); // free the linked list
     }
+    return 0;
 }
