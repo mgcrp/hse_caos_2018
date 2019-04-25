@@ -25,7 +25,7 @@ int main(int argc, char * argv[]) {
     if (socket_fd < 0) { return 0; }
 
     // connecting
-    ret_code = connect(sfd, result->ai_addr, result->ai_addrlen);
+    ret_code = connect(socket_fd, result->ai_addr, result->ai_addrlen);
     if (ret_code < 0) { return 0; }
 
     // initializing read and write streams
@@ -44,7 +44,7 @@ int main(int argc, char * argv[]) {
     if (ret_code < 0) { return 0; }
 
     // sending numbers from 0 to {number} -> to server
-    for (int i = 0; i <= k; ++i) {
+    for (int i = 0; i <= number; ++i) {
         ret_code = fprintf(write_stream, "%d\n", i);
         fflush(write_stream);
         if (ret_code < 0) { return 0; }
@@ -53,7 +53,7 @@ int main(int argc, char * argv[]) {
     // recieving final number <- from server
     unsigned long long answer;
     ret_code = fscanf(read_stream, "%llu", &answer);
-    if (ret < 0) { return 0; }
+    if (ret_code < 0) { return 0; }
 
     // printing final code
     printf("%llu\n", answer);
