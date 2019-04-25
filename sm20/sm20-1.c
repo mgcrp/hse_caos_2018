@@ -20,8 +20,8 @@ int main() {
         }
 
         bool is_first = true;
-        unsigned short ipmin_port;
         unsigned long ipmin_binary;
+        unsigned short ipmin_port = 0;
         char ipmin_str[INET_ADDRSTRLEN], ipcur_str[INET_ADDRSTRLEN];
 
         for (temp = result; temp != NULL; temp = temp->ai_next) {
