@@ -9,8 +9,8 @@ void signal_handler(int signo) {
         _exit(0);
     } else {
         printf("%d\n", counter);
-        counter += 1;
         fflush(stdout);
+        counter += 1;
     }
 }
 
