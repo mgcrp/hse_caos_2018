@@ -2,13 +2,13 @@
 #include <stdio.h>
 #include <unistd.h>
 
-volatile bool multiplication_mode = false;
+volatile int multiplication_mode = 0;
 
 void signal_handler(int signo) {
     if (signo == SIGUSR1) {
-        multiplication_mode = false;
+        multiplication_mode = 0;
     } else if (signo == SIGUSR2) {
-        multiplication_mode = true;
+        multiplication_mode = 1;
     }
 }
 
