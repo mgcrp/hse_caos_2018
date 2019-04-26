@@ -14,7 +14,7 @@ void signal_handler(int signo) {
 }
 
 int main() {
-    struct sigaction action { .sa_flags = SA_RESTART, .sa_handler = signal_handler };
+    struct sigaction action = { .sa_flags = SA_RESTART, .sa_handler = signal_handler };
     sigaction(SIGINT, &action, NULL);
 
     sigset_t signal_mask;                           // creating signal mask
