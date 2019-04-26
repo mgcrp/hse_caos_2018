@@ -26,7 +26,7 @@ int main() {
     printf("%d\n", getpid());
     fflush(stdout);
 
-    sigprocmask(SIG_UNBLOCK, &bs, NULL);            // deleting signals from current mask
+    sigprocmask(SIG_UNBLOCK, &signal_mask, NULL);   // deleting signals from current mask
     while (42) {
         pause();
     }
