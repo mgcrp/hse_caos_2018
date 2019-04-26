@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
+// global int - counter
 volatile int counter = 0;
 
 void signal_handler(int signo) {
