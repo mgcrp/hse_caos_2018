@@ -8,7 +8,8 @@ void signal_handler(int signo) {
     if (counter == 4) {
         _exit(0);
     } else {
-        printf("%d\n", counter++);
+        printf("%d\n", counter);
+        counter += 1;
         fflush(stdout);
     }
 }
