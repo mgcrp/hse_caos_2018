@@ -1,4 +1,5 @@
 #include <signal.h>
+#include <stdio.h>
 
 int main(int argc, char * argv[]) {
     int pid = strtol(argv[1], NULL, 10);
