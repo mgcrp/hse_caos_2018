@@ -16,7 +16,7 @@ void sigint_handler(int signo) {
 }
 
 int main() {
-    struct sigaction sa = {};
+    struct sigaction sa {};
     sa.sa_flags = SA_RESTART;
     sa.sa_handler = sigint_handler;
     sigaction(SIGINT, &sa, NULL);
