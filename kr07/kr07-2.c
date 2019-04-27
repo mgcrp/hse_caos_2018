@@ -14,7 +14,7 @@ int main(int argc, char * argv[]) {
         dup2(file_in, STDIN_FILENO);
 
         // Открытие выходного файла
-        int file_out = open(argv[3], O_WRONLY | O_CREAT | O_TRUNC, 0666);
+        int file_out = open(argv[3], O_WRONLY | O_CREAT | O_APPEND, 0666);
         if (file_out < 0) { _exit(42); }
         dup2(file_out, STDOUT_FILENO);
 
