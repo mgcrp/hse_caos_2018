@@ -46,6 +46,6 @@ int main() {
                 _exit(0);
         }
         fflush(stdout);
-        signal_in = 0
+        signal_in = 0;
     }
 }
