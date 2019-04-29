@@ -41,16 +41,15 @@ int main() {
             // waiting for the signal
             sigsuspend(&wait_mask);
         }
-        switch (signal_in) {
-            case 1:
-                printf("%d %d\n", cnt_sigusr1, cnt_sigusr2);
-                fflush(stdout);
-                cnt_sigusr1 += 1;
-            case 2:
-                cnt_sigusr2 += 1;
-            case 3:
-                _exit(0);
+        if (signal_in == 1) {
+            printf("%d %d\n", cnt_sigusr1, cnt_sigusr2);
+            cnt_sigusr1 += 1;
+        } else if (signal_in == 2) {
+            cnt_sigusr2 += 1;
+        } else if (signal_in == 3) {
+            _exit(0);
         }
+        fflush(stdout);
         signal_in = 0;
     }
 }
