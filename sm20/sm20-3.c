@@ -43,13 +43,13 @@ int main(int argc, char * argv[]) {
         ret_code = read(single_conn_fd, &number_in, sizeof(number_in));
         if (ret_code < sizeof(number_in)) { _exit(0); }
 
-        if (number != 0) {
-            result += ntohl(number_in);
+        if (number_in != 0) {
+            sum += ntohl(number_in);
+            close(single_conn_fd);
         } else {
+            close(single_conn_fd);
             break;
         }
-
-        close(single_conn_fd);
     }
 
     printf("%d\n", sum);
