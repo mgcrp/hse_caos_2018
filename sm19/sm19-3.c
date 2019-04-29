@@ -33,7 +33,7 @@ int main() {
 
     int cnt_sigusr1 = 0, cnt_sigusr2 = 0;
     while (42) {
-        while(sig_type == 0) {
+        while(signal_in == 0) {
             sigsuspend(&oldmask);
         }
         switch (signal_in) {
