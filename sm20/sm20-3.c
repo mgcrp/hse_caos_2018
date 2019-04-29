@@ -40,7 +40,7 @@ int main(int argc, char * argv[]) {
         int single_conn_fd = accept(socket_fd, (struct sockaddr *) &address, (socklen_t *)&size);
         if (single_conn_fd < 0) { _exit(0); }
 
-        ret_code = read(afd, &number_in, sizeof(number_in))
+        ret_code = read(single_conn_fd, &number_in, sizeof(number_in));
         if (ret_code < sizeof(number_in)) { _exit(0); }
 
         if (number != 0) {
