@@ -3,8 +3,7 @@
 #include <netinet/in.h>     // Internet stuff
 #include <signal.h>         // Used to ignore SIGPIPE
 #include <stdio.h>          // Ints and other stuff
-#include <stdlib.h>         // Used for _exit() calls
-// #include <string.h>
+// #include <stdlib.h>         // Used for _exit() calls
 #include <sys/types.h>      // Internet stuff
 #include <sys/socket.h>     // Internet stuff
 #include <unistd.h>         // Used for _exit() calls
