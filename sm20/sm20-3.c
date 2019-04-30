@@ -1,13 +1,13 @@
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <signal.h>
-#include <stdlib.h>
-#include <string.h>
+#include <arpa/inet.h>      // Internet stuff
+#include <netdb.h>          // Internet stuff
+#include <netinet/in.h>     // Internet stuff
+#include <signal.h>         // Used to ignore SIGPIPE
+#include <stdio.h>          // Ints and other stuff
+#include <stdlib.h>         // Used for _exit() calls
+// #include <string.h>
+#include <sys/types.h>      // Internet stuff
+#include <sys/socket.h>     // Internet stuff
+// #include <unistd.h>
 
 int main(int argc, char * argv[]) {
     if (argc != 2) { return 0; }
