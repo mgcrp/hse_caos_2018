@@ -7,7 +7,7 @@
 // #include <string.h>
 #include <sys/types.h>      // Internet stuff
 #include <sys/socket.h>     // Internet stuff
-// #include <unistd.h>
+#include <unistd.h>         // Used for _exit() calls
 
 int main(int argc, char * argv[]) {
     if (argc != 2) { return 0; }
