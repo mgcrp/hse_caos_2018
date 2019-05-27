@@ -3,7 +3,8 @@
 
 enum { THREAD_NUM = 10 };
 
-struct ThreadConfig {
+struct ThreadConfig
+{
     int id;
     pthread_t prev;
 };
