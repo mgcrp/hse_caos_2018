@@ -10,7 +10,7 @@ void * thread_handler(void * params) {
     long long * sum = malloc(sizeof(long long));
     *sum = 0;
 
-    if (scanf("%d", &number_in) == 1) {
+    while (scanf("%d", &number_in) == 1) {
         *sum += number_in;
         sched_yield();
     }
@@ -26,7 +26,7 @@ int main(int argc, char * argv[]) {
     pthread_attr_setstacksize(&attr, sysconf(_SC_THREAD_STACK_MIN));
 
     int threads_num = strtol(argv[1], NULL, 10);
-    pthread_t * threads = malloc(sizeof(pthread_t) * threads_num);
+    pthread_t * threads = malloc(threads_num * sizeof(pthread_t));
     for (int i = 0; i < threads_num; ++i) {
         if (pthread_create(&threads[i], &attr, thread_handler, NULL) != 0) {
             // if one of the threads can't be created - abort;
@@ -41,7 +41,7 @@ int main(int argc, char * argv[]) {
         final_sum += *temp_sum;
         free(temp_sum);
     }
-    
+
     printf("%lld\n", final_sum);
     free(threads);
     return 0;
