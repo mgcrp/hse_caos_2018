@@ -25,7 +25,7 @@ int main() {
     for (int i = 0; i < THREAD_NUM; ++i) {
         config[i].id = i;
         config[i].prev = thread;
-        pthread_create(&thread, NULL, thread_handler, config[i]);
+        pthread_create(&thread, NULL, thread_handler, &config[i]);
     }
 
     pthread_join(thread, NULL);
