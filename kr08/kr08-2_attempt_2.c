@@ -10,8 +10,10 @@ volatile int program_mode = 0;
 volatile int sigusr1_counter = 0;
 
 enum {
-    NETWORK_MASK = 0x3fff0000,
-    HOST_MASK = 0x0000ffff
+    NETWORK_MASK = 0b111111111111110000000000000000,
+    HOST_MASK = 0b1111111111111111,
+    CHECK_CLASS_MASK = 0b11000000000000000000000000000000,
+    B_CLASS_MASK = 0b10000000000000000000000000000000
 };
 
 void signal_handler(int signo) {
@@ -34,14 +36,14 @@ void signal_handler(int signo) {
         unsigned long number_in;
         if (scanf("%lo", &number_in) != EOF) {
             // checking if number_in is a B-class IP
-            if (number_in & (3 << 30) == (1 << 31)) {
+            if ((number_in & CHECK_CLASS_MASK) == B_CLASS_MASK) {
                 if (program_mode) {
                     // network number
-                    printf("%ld\n", (unsigned long)((number_in & NETWORK_MASK) >> 16));
+                    printf("%ld\n", ((number_in & NETWORK_MASK) >> 16));
                     fflush(stdout);
                 } else {
                     // host number
-                    printf("%ld\n", (unsigned long)(number_in & HOST_MASK));
+                    printf("%ld\n", (number_in & HOST_MASK));
                     fflush(stdout);
                 }
             } else {
