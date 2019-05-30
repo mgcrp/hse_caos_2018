@@ -34,27 +34,23 @@ void signal_handler(int signo) {
         }
     } else if (signo == SIGUSR2) {
         unsigned long number_in;
-        if (scanf("%lo", &number_in) != EOF) {
-            // checking if number_in is a B-class IP
-            if ((number_in & CHECK_CLASS_MASK) == B_CLASS_MASK) {
-                if (program_mode) {
-                    // network number
-                    unsigned long network_num = (number_in & NETWORK_MASK) >> 16;
-                    printf("%ld\n", network_num);
-                    fflush(stdout);
-                } else {
-                    // host number
-                    unsigned long host_num = number_in & HOST_MASK;
-                    printf("%ld\n", host_num);
-                    fflush(stdout);
-                }
+        scanf("%lo", &number_in);
+
+        if ((number_in & CHECK_CLASS_MASK) == B_CLASS_MASK) {
+            if (program_mode) {
+                // network number
+                unsigned long network_num = (number_in & NETWORK_MASK) >> 16;
+                printf("%ld\n", network_num);
             } else {
-                printf("0\n");
-                fflush(stdout);
+                // host number
+                unsigned long host_num = number_in & HOST_MASK;
+                printf("%ld\n", host_num);
             }
         } else {
-            exit(1);
+            // not a B-class IP
+            printf("0\n");
         }
+        fflush(stdout);
     }
 }
 
