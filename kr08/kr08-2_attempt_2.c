@@ -44,11 +44,11 @@ void signal_handler(int signo) {
             }
 
             if ((cur_IP & CHECK_CLASS_MASK) == B_CLASS_MASK) {
-                if (work_type == 1) {
+                if (!program_mode) {
                     unsigned long host = cur_IP & HOST_MASK;
                     printf("%ld", host);
                 } else {
-                    unsigned long network = (cur_IP & NETWORK_MASK) >> BIT_SHIFT;
+                    unsigned long network = (cur_IP & NETWORK_MASK) >> 16;
                     printf("%ld", network);
                 }
             } else {
