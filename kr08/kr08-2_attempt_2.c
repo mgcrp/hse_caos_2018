@@ -61,7 +61,9 @@ int main() {
 
     sigset_t signal_mask;
     sigemptyset(&signal_mask);
-    sigprocmask(SIG_BLOCK, &action->sa_mask, signal_mask);
+    sigaddset(&signal_mask, SIGUSR1);
+    sigaddset(&signal_mask, SIGUSR2);
+    sigprocmask(SIG_BLOCK, &signal_mask, NULL);
 
     printf("%d\n", getpid());
     fflush(stdout);
@@ -70,6 +72,6 @@ int main() {
         sigsuspend(&signal_mask);
     }
 
-    sigprocmask(SIG_UNBLOCK, &action->sa_mask, NULL);
+    sigprocmask(SIG_UNBLOCK, &signal_mask, NULL);
     return 0;
 }
