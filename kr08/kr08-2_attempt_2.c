@@ -1,6 +1,7 @@
 #include <inttypes.h>
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 // mode 0 - network num
@@ -60,7 +61,7 @@ int main() {
 
     sigset_t signal_mask;
     sigemptyset(&signal_mask);
-    sigprocmask(SIG_BLOCK, &sa->sa_mask, signal_mask);
+    sigprocmask(SIG_BLOCK, &action->sa_mask, signal_mask);
 
     printf("%d\n", getpid());
     fflush(stdout);
@@ -69,6 +70,6 @@ int main() {
         sigsuspend(&signal_mask);
     }
 
-    sigprocmask(SIG_UNBLOCK, &sa->sa_mask, NULL);
+    sigprocmask(SIG_UNBLOCK, &action->sa_mask, NULL);
     return 0;
 }
