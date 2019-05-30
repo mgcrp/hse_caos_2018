@@ -43,7 +43,7 @@ void signal_handler(int signo) {
                 exit(EXIT_SUCCESS);
             }
 
-            if ((cur_IP & CLASS_MASK) == B_CLASS_MASK) {
+            if ((cur_IP & CHECK_CLASS_MASK) == B_CLASS_MASK) {
                 if (work_type == 1) {
                     unsigned long host = cur_IP & HOST_MASK;
                     printf("%ld", host);
