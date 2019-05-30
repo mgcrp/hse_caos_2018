@@ -37,11 +37,11 @@ void signal_handler(int signo) {
             if (number_in && (3 << 30) == (1 << 31)) {
                 if (program_mode) {
                     // network number
-                    printf("%ld\n", (number_in & NETWORK_MASK) >> 16);
+                    printf("%ld\n", (unsigned long)((number_in & NETWORK_MASK) >> 16));
                     fflush(stdout);
                 } else {
                     // host number
-                    printf("%ld\n", (number_in & HOST_MASK));
+                    printf("%ld\n", (unsigned long)(number_in & HOST_MASK));
                     fflush(stdout);
                 }
             } else {
