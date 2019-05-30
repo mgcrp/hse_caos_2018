@@ -57,6 +57,7 @@ void signal_handler(int signo) {
 
             putchar('\n');
             fflush(stdout);
+        }
     }
 }
 
