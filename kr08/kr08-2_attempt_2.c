@@ -10,10 +10,10 @@ volatile int program_mode = 0;
 volatile int sigusr1_counter = 0;
 
 enum {
-    NETWORK_MASK = 0x3fff0000,
-    HOST_MASK = 0x0000ffff,
-    CHECK_CLASS_MASK = 0xc0000000,
-    B_CLASS_MASK = 0x80000000
+    NETWORK_MASK = 0x3fff0000,          // <14x1><16x0>
+    HOST_MASK = 0x0000ffff,             // <16x1>
+    CHECK_CLASS_MASK = 0xc0000000,      // 11<30x0>
+    B_CLASS_MASK = 0x80000000           // 10<30x0>
 };
 
 void signal_handler(int signo) {
@@ -33,25 +33,22 @@ void signal_handler(int signo) {
             _exit(0);
         }
     } else if (signo == SIGUSR2) {
-        unsigned long cur_IP;
+        unsigned long ip_in;
+        scanf("%lo", &ip_in);
 
-        if (scanf("%lo", &cur_IP) == EOF) {
-            exit(EXIT_SUCCESS);
-        }
-
-        if ((cur_IP & CHECK_CLASS_MASK) == B_CLASS_MASK) {
-            if (program_mode == 0) {
-                unsigned long host = cur_IP & HOST_MASK;
-                printf("%ld", host);
+        if ((ip_in & CHECK_CLASS_MASK) == B_CLASS_MASK) {
+            if (program_mode) {
+                // 1 - host
+                unsigned long host = ip_in & HOST_MASK;
+                printf("%ld\n", host);
             } else {
-                unsigned long network = (cur_IP & NETWORK_MASK) >> 16;
-                printf("%ld", network);
+                // 0 - network
+                unsigned long network = (ip_in & NETWORK_MASK) >> 16;
+                printf("%ld\n", network);
             }
         } else {
-            putchar('0');
+            printf("0\n");
         }
-
-        putchar('\n');
         fflush(stdout);
     }
 }
