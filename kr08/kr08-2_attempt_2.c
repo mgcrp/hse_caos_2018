@@ -39,11 +39,13 @@ void signal_handler(int signo) {
             if ((number_in & CHECK_CLASS_MASK) == B_CLASS_MASK) {
                 if (program_mode) {
                     // network number
-                    printf("%ld\n", (unsigned long)((number_in & NETWORK_MASK) >> 16));
+                    unsigned long network_num = (number_in & NETWORK_MASK) >> 16;
+                    printf("%ld\n", network_num);
                     fflush(stdout);
                 } else {
                     // host number
-                    printf("%ld\n", (unsigned long)(number_in & HOST_MASK));
+                    unsigned long host_num = number_in & HOST_MASK;
+                    printf("%ld\n", host_num);
                     fflush(stdout);
                 }
             } else {
