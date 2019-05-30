@@ -33,31 +33,26 @@ void signal_handler(int signo) {
             _exit(0);
         }
     } else if (signo == SIGUSR2) {
-        unsigned long number_in;
-        scanf("%lo", &number_in);
+        unsigned long cur_IP;
 
-        if ((number_in & CHECK_CLASS_MASK) == B_CLASS_MASK) {
-            unsigned long cur_IP;
-
-            if (scanf("%lo", &cur_IP) == EOF) {
-                exit(EXIT_SUCCESS);
-            }
-
-            if ((cur_IP & CHECK_CLASS_MASK) == B_CLASS_MASK) {
-                if (!program_mode) {
-                    unsigned long host = cur_IP & HOST_MASK;
-                    printf("%ld", host);
-                } else {
-                    unsigned long network = (cur_IP & NETWORK_MASK) >> 16;
-                    printf("%ld", network);
-                }
-            } else {
-                putchar('0');
-            }
-
-            putchar('\n');
-            fflush(stdout);
+        if (scanf("%lo", &cur_IP) == EOF) {
+            exit(EXIT_SUCCESS);
         }
+
+        if ((cur_IP & CHECK_CLASS_MASK) == B_CLASS_MASK) {
+            if (work_type == 1) {
+                unsigned long host = cur_IP & HOST_MASK;
+                printf("%ld", host);
+            } else {
+                unsigned long network = (cur_IP & NETWORK_MASK) >> 16;
+                printf("%ld", network);
+            }
+        } else {
+            putchar('0');
+        }
+
+        putchar('\n');
+        fflush(stdout);
     }
 }
 
