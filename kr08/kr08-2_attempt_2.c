@@ -37,20 +37,26 @@ void signal_handler(int signo) {
         scanf("%lo", &number_in);
 
         if ((number_in & CHECK_CLASS_MASK) == B_CLASS_MASK) {
-            if (program_mode) {
-                // network number
-                unsigned long network_num = (number_in & NETWORK_MASK) >> 16;
-                printf("%ld\n", network_num);
-            } else {
-                // host number
-                unsigned long host_num = number_in & HOST_MASK;
-                printf("%ld\n", host_num);
+            unsigned long cur_IP;
+
+            if (scanf("%lo", &cur_IP) == EOF) {
+                exit(EXIT_SUCCESS);
             }
-        } else {
-            // not a B-class IP
-            printf("0\n");
-        }
-        fflush(stdout);
+
+            if ((cur_IP & CLASS_MASK) == B_CLASS_MASK) {
+                if (work_type == 1) {
+                    unsigned long host = cur_IP & HOST_MASK;
+                    printf("%ld", host);
+                } else {
+                    unsigned long network = (cur_IP & NETWORK_MASK) >> BIT_SHIFT;
+                    printf("%ld", network);
+                }
+            } else {
+                putchar('0');
+            }
+
+            putchar('\n');
+            fflush(stdout);
     }
 }
 
