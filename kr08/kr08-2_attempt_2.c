@@ -24,32 +24,34 @@ void signal_handler(int signo) {
         } else {
             program_mode = 1;
         }
-
         // counter += 1
         sigusr1_counter += 1;
-
         // if sig1_counter == 5: _exit(0)
         if (sigusr1_counter == 5) {
             _exit(0);
         }
     } else if (signo == SIGUSR2) {
+        // reading number
         unsigned long ip_in;
         scanf("%lo", &ip_in);
-
+        // checking if ip_in is a B-class IP
         if ((ip_in & CHECK_CLASS_MASK) == B_CLASS_MASK) {
             if (program_mode) {
                 // 1 - host
                 unsigned long host = ip_in & HOST_MASK;
                 printf("%ld\n", host);
+                fflush(stdout);
             } else {
                 // 0 - network
                 unsigned long network = (ip_in & NETWORK_MASK) >> 16;
                 printf("%ld\n", network);
+                fflush(stdout);
             }
         } else {
+            // not a B-class IP
             printf("0\n");
+            fflush(stdout);
         }
-        fflush(stdout);
     }
 }
 
