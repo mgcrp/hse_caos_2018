@@ -34,7 +34,7 @@ void signal_handler(int signo) {
         unsigned long number_in;
         if (scanf("%lo", &number_in) != EOF) {
             // checking if number_in is a B-class IP
-            if (number_in && (3 << 30) == (1 << 31)) {
+            if (number_in && 0xc0000000 == 0x80000000) {
                 if (program_mode) {
                     // network number
                     printf("%ld\n", (unsigned long)((number_in & NETWORK_MASK) >> 16));
