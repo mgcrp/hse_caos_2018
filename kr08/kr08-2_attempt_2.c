@@ -10,10 +10,10 @@ volatile int program_mode = 0;
 volatile int sigusr1_counter = 0;
 
 enum {
-    NETWORK_MASK = 0x3fff0000,          // <14x1><16x0>
-    HOST_MASK = 0x0000ffff,             // <16x1>
-    CHECK_CLASS_MASK = 0xc0000000,      // 11<30x0>
-    B_CLASS_MASK = 0x80000000           // 10<30x0>
+    NETWORK_MASK = 0b111111111111110000000000000000,
+    HOST_MASK = 0b1111111111111111,
+    CHECK_CLASS_MASK = 0b11000000000000000000000000000000,
+    B_CLASS_MASK = 0b10000000000000000000000000000000
 };
 
 void signal_handler(int signo) {
