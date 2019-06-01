@@ -1,8 +1,10 @@
 /* INSERT INCLUDE DIRECTIVES HERE */
+#include <fcntl.h>
 #include <pthread.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 enum { N = 5 };
@@ -17,14 +19,14 @@ void *func2(void *arg)
 }
 
 /* INSERT YOUR CODE HERE */
-volatile int startRun = 1;
+volatile int f = 0;
 
 void *func(void * arg)
 {
     int serial = (int) (intptr_t) arg;
 
     /* INSERT YOUR CODE HERE */
-    while (startRun) { continue; }
+    while (!f) { continue; }
     if (serial == 0) {
         pthread_join(ids[2], NULL);
     }
@@ -35,7 +37,7 @@ void *func(void * arg)
         pthread_join(ids[0], NULL);
     }
     else if (serial == 4) {
-        pthread_join(ids[4], NULL);
+        pthread_join(ids[3], NULL);
     }
     printf("%d\n", serial);
 
@@ -55,7 +57,7 @@ int main()
     }
 
     /* INSERT YOUR CODE HERE */
-    startRun = 0;
+    f = 1;
     pthread_join(ids[1], NULL);
 
     return 0;
