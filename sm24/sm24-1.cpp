@@ -3,28 +3,27 @@
 #include <mutex>
 #include <vector>
 
-const int ITERATIONS = 1000000;
-const int THREADS_NUM = 3;
+double values[3];
+std::mutex local_mutex;
+const int THREAD_NUMBER = 3;
+const int ITER_NUMBER = 1000000;
 
-double arr[3];
-std::mutex m;
-
-void thread_func(int add_idx, int add_val, int sub_idx, int sub_val) {
-    for (int i = 0; i < ITERATIONS; ++i) {
-        std::lock_guard<std::mutex> lock(m);
-        arr[add_idx] += add_val;
-        arr[sub_idx] -= sub_val;
+void thread_func(int add_to, int add_value, int substract_from, int substract_value) {
+    for (int i = 0; i < ITER_NUMBER; ++i) {
+        std::lock_guard<std::mutex> lock(local_mutex);
+        values[add_to] += add_value;
+        values[substract_from] -= substract_value;
     }
 }
 
 int main() {
     std::vector<std::thread> threads;
-    for (int i = 0; i < THREADS_NUM; ++i) {
-        threads.emplace_back(thread_func, i, 80 + (20 * i), (i + 1) % THREADS_NUM, 90 + 20 * i);
+    for (int i = 0; i < THREAD_NUMBER; ++i) {
+        threads.emplace_back(thread_func, i, 80 + (20 * i), (i + 1) % THREAD_NUMBER, 90 + 20 * i);
     }
-    for (int i = 0; i < THREADS_NUM; ++i) {
+    for (int i = 0; i < THREAD_NUMBER; ++i) {
         threads[i].join();
     }
-    std::cout << arr[0] << " " << arr[1] << " " << arr[2] << "\n";
+    std::cout << values[0] << " " << values[1] << " " << values[2] << "\n";
     return 0;
 }
