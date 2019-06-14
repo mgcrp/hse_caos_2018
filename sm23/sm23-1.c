@@ -15,11 +15,9 @@ void * thread_func(void * ptr) {
     int index = (int)(intptr_t) ptr;
     for (int i = 0; i < ITER_NUMBER; ++i) {
         if (pthread_mutex_lock(&mutex)) { exit(1); }
-
         // Actions here
         values[index] += (index + 1) * 100;
         values[(index + 1) % THREAD_NUMBER] -= (index + 1) * 100 + 1;
-
         if (pthread_mutex_unlock(&mutex)) { exit(1); }
     }
 }
