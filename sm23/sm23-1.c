@@ -25,7 +25,7 @@ void * thread_func(void * ptr) {
 }
 
 int main() {
-    pthread_t threads;
+    pthread_t threads[THREAD_NUMBER];
     for (int i = 0; i < THREAD_NUMBER; ++i) {
         if (pthread_create(&threads[i], NULL, thread_func, (void *)(intptr_t) i)) { return 1; }
     }
