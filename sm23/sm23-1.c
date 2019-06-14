@@ -20,6 +20,7 @@ void * thread_func(void * ptr) {
         values[(index + 1) % THREAD_NUMBER] -= (index + 1) * 100 + 1;
         if (pthread_mutex_unlock(&mutex)) { exit(1); }
     }
+    return 0;
 }
 
 int main() {
@@ -30,8 +31,6 @@ int main() {
     for (int i = 0; i < THREAD_NUMBER; ++i) {
         if (pthread_join(threads[i], NULL)) { return 1; }
     }
-    for (int i = 0; i < THREAD_NUMBER; ++i) {
-        printf("%.10g\n", values[i]);
-    }
+    printf("%.10g %.10g %.10g\n", values[0], values[1], values[2]);
     return 0;
 }
