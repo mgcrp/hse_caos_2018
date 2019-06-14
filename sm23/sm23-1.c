@@ -4,12 +4,9 @@
 #include <string.h>
 #include <unistd.h>
 
-enum {
-    THREAD_NUMBER = 3,
-    ITER_NUMBER = 1000000
-};
 double values[3];
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+enum { THREAD_NUMBER = 3, ITER_NUMBER = 1000000 };
 
 void * thread_func(void * ptr) {
     int index = (int)(intptr_t) ptr;
